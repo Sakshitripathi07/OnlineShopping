@@ -1,0 +1,94 @@
+<div class="d-flex align-items-start mb-3 product" style="height: 800px;">
+    <div class="col" style="padding-top: 2cm;">
+        <img class="thumbnail" src="data:image/jpeg;base64,{{product.productImage}}" alt="product image" height="600"
+            width="350">
+    </div>
+
+    <div class="col">
+        <div class="container" style="padding-top: 2cm;">
+            <h1 style="color: royalblue;">{{product.model|uppercase}}</h1>
+            <i>{{product.category}}</i>
+            <hr>
+            <h5><i>Description</i></h5>
+            <p>{{product.description}}</p>
+            <hr>
+        </div>
+    </div>
+    <div class="col">
+        <div class="container" style="padding-top:3in;">
+
+            <h4 style="text-align: center;"><i>Price</i></h4>
+            <h4 style="text-align: center;">₹ {{product.price}}.00</h4>
+            <hr>
+            <button type="button" class="btn btn-warning btn-rounded">
+                <h3>Buy now</h3>
+            </button><br>
+            <br>
+            <button type="button" class="btn btn-danger btn-rounded" >
+                <h3>Add to cart now</h3>
+            </button>
+        </div>
+    </div>
+    <!-- <h1 align="center" class="display-4 mb-5">{{title}}</h1> -->
+<!-- <div class="row text-center justify-content-center">
+  <div class="col-lg-6 ">
+    <div class="card mb-4 ">
+      <img height="60%" class="card-img-top" src="{{productInfo?.productIcon}}">
+      <div class="card-body">
+        <h4 class="card-title ">{{productInfo?.productName}}</h4>
+        <form name="form" #form='ngForm' (ngSubmit)="productInfo?.productStatus == 0 && addToCart()">
+          <div class="text-left">
+            <input hidden name="productId" [value]=productInfo?.productId>
+            <p class="card-test"><strong>Description: </strong>{{productInfo?.productDescription}}</p>
+            <p class="card-text">
+              <strong>Price: </strong>
+              <label id="price">{{productInfo?.productPrice | currency}}</label>
+            </p>
+            <p class="card-text"><strong>Stock: </strong>{{productInfo?.productStock}}</p>
+
+            <label class="card-text">
+              <strong>Quantity: </strong>
+              <input [(ngModel)]=count
+                     (change)="validateCount()"
+                     type="number"
+                     name="count"
+                     required
+                     min="1"
+                     [max]=productInfo?.productStock
+              >
+            </label>
+
+
+            <p class="card-text"><strong>Subtotal: </strong>
+              <label id="subtotal">{{count * productInfo?.productPrice | currency}}</label>
+            </p>
+          </div>
+          <button type="submit" [disabled]="!form.form.valid" *ngIf="productInfo?.productStatus == 0; else offBlock"
+                  class="btn btn-primary btn-lg" 
+          >Add to Cart
+          </button>
+          <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+-->
+</div>
+<hr>
+<h4 style="text-align: center;">Product Reviews</h4>
+<h6 style="text-align: center;"><i>Comments:({{review.length}})</i></h6>
+<!-- <h1>{{review|json}}</h1> -->
+
+<hr>
+
+<div class="container" *ngFor="let r of review">
+    <div>
+        <h5><b>User:</b> {{r.userdetails.username}} <b style="color:teal;">rating</b> :{{r.rating}}</h5>
+        <h5><b>Comment</b>:{{r.description}}</h5>
+    </div>
+    <hr>
+</div>
+<router-outlet></router-outlet>

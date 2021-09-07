@@ -1,0 +1,21 @@
+<div class="container">
+    <hr>
+    <table>
+        <tr>
+            <th>OrderId</th>
+            <th>Product Model</th>
+            <th>Product Category</th>
+            <th>Amount</th>
+            <th>Quantity</th>
+        </tr>
+        <tr *ngFor="let op of orderedProducts">
+            <td>{{op.orderId}}</td>
+            <a href="product/{{op.product.model}}" style="text-decoration: none;"><td>{{op.product.model}}</td></a>
+            <td>{{op.product.category}}</td>
+            <td>{{op.product.price *op.quantity}}</td>
+            <td>{{op.quantity}}</td>
+        </tr>
+
+    </table>
+    <hr>
+</div>

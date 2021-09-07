@@ -1,0 +1,169 @@
+<h1>{{username}}'s PROFILE</h1>
+<br>
+<hr>
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col-6 col-md-4">
+
+
+            <div class="profile">
+                <img src="../../../assets/img/profile.png" alt="profile photo">
+                <h3>{{user.emailId}}</h3>
+                <h3>{{user.firstName}}</h3>
+                <h3>{{user.lastName}}</h3>
+                <button *ngIf="!flag" (click)="showHideContactDetails()">Show User Details</button>
+                <button *ngIf="flag" (click)="showHideContactDetails()">Hide User Details</button>
+                <div *ngIf="flag">
+                    <div class="profile-contact">
+                        <h3>User Details :</h3>
+                        <h5>{{user.firstName}}</h5>
+                        <h5>{{user.lastName}}</h5>
+                        <h5>{{user.emailId}}</h5>
+                        <h5>{{user.mobileNo}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card" style="width: 18rem">
+                            <img class="card-img-top" src="../../../assets/img/address.png" alt="address" width="100"
+                                height="300">
+                            <div class="card-body">
+                                <h5 class="card-title">My Address</h5>
+                                <a class="btn btn-primary" (click)="viewAddress()">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../../../assets/img/order.png" alt="order image" width="100"
+                                height="300">
+                            <div class="card-body">
+                                <h5 class="card-title">My Orders</h5>
+                                <a class="btn btn-primary" (click)="viewOrders()">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="w-100"></div>
+
+                    <div class="col-sm-6">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../../../assets/img/review.jpg" alt="order image" width="100"
+                                height="300">
+                            <div class="card-body">
+                                <h5 class="card-title">My Reviews</h5>
+                                <a class="btn btn-primary" (click)="viewReviews()">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../../../assets/img/cart.jpg" alt="order image" width="100"
+                                height="300">
+                            <div class="card-body">
+                                <h5 class="card-title">My Cart</h5>
+                                <a class="btn btn-primary" (click)="viewCart()">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<hr>
+
+<div *ngIf="add" id="viewaddress">
+    <h1>Your Addresses</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>HouseNumber</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>PinCode</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let a of address;let indexOfelement=index">
+            <td>{{indexOfelement+1}}</td>
+            <td>{{a.houseNumber}}</td>
+            <td>{{a.streetName|uppercase}}</td>
+            <td>{{a.city|uppercase}}</td>
+            <td>{{a.state|uppercase}}</td>
+            <td>{{a.country|uppercase}}</td>
+            <td>{{a.postalCode}}</td>
+        </tr>
+    </table>
+    <hr>
+</div>
+
+<div *ngIf="order" id="vieworders">
+    <h1>Your Orders</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>OrderID</th>
+                <th>Amount</th>
+                <th>Order Date</th>
+                <th>Order Time</th>
+                <th>Payment Mode</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+        <tr *ngFor="let o of myOrders">
+           <a routerLink="/orderedProducts/{{o.orderId}}" ><td>{{o.orderId}}</td></a>
+            <td>{{o.amount}}</td>
+            <td>{{o.orderDate}}</td>
+            <td>{{o.orderTime}}</td>
+            <td>{{o.paymentmode}}</td>
+            <td>{{o.status}}</td>
+        </tr>
+
+        <!-- <tr>
+            <th>Address</th>
+        </tr>
+        <tr *ngFor="let o of myOrders">
+            <td>{{o.address.houseNumber}}</td>
+            <td>{{o.address.streetName}}</td>
+            <td>{{o.address.city}}</td>
+            <td>{{o.address.state}}</td>
+            <td>{{o.address.country}}</td>
+            <td>{{o.address.postalCode}}</td>
+        </tr>
+         -->
+    </table>
+    <hr>
+</div>
+<div *ngIf="reviews" id="viewreviews">
+    <h1>Your Reviews</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+        <tr *ngFor="let r of myReviews">
+            <a href="product/{{r.model}}"><td>{{r.model}}</td></a>
+            <td>{{r.description}}</td>
+            <td>{{r.rating}}</td>
+        </tr>
+    </table>
+</div>
+<div *ngIf="cart" id="viewcart">
+    <h1>Your Cart</h1>
+    <hr>
+</div>
+<router-outlet></router-outlet>

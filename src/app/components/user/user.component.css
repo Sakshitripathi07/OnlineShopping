@@ -1,0 +1,50 @@
+.profile{
+    padding : 20px;
+    border : 2px solid rgb(4, 67, 122);
+    box-shadow: 0 4px 6px 0 rgb(216, 165, 165);
+    width: 90%;
+
+}
+img{
+    width: 100%;
+}
+
+.profile:hover{
+    box-shadow: 0 8px 16px 0 blue;
+
+}
+.profile-designation{
+    font-style: italic;
+}
+.profile-company{
+    font-style: italic;
+}
+.profile-skills{
+    font-size: 20px;
+
+}
+.profile-contact{
+    padding-left: 8px;
+    border-left: 2px solid red;
+}
+
+.card:hover{
+    box-shadow: 0 8px 16px 0 black;
+
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  

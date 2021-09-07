@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="">
+        <img src="../../../assets/img/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Digital Shoppie
+
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="navbar-nav">
+
+            <a class="nav-item nav-link " routerLink="product-list/mobile">
+                Mobiles
+            </a>
+            <a class="nav-item nav-link" routerLink="product-list/television">
+                Television
+            </a>
+            <a class="nav-item nav-link " routerLink="product-list/camera">
+                Cameras
+            </a>
+            <a class="nav-item nav-link" routerLink="product-list/laptop">
+                Laptops
+            </a>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" routerLink="/user">
+                <i class="bi bi-cart"></i>
+                Cart
+            </a>
+            <ng-container *ngIf="currentUser.length!=0; else noUser">
+                <a class="nav-item nav-link " routerLink="/order">
+                    <i class="fas fa-list-ul"></i>
+                    Orders
+                </a>
+                <a class="nav-item nav-link " routerLink="/user">
+                    {{currentUser}}
+                </a>
+            </ng-container>
+            <ng-template #noUser>
+                <a class="nav-item nav-link " (click)="openLoginModal()">
+                    Sign In
+                </a>
+                <a class="nav-item nav-link" (click)="openUserRegModal()">
+                    Sign Up
+                </a>
+            </ng-template>
+            <!-- <ng-container *ngIf="currentUser.length!=0">
+                <a class="nav-item nav-link" routerLink="/user">{{currentUser}}</a>
+                Logout
+            <a class="nav-item nav-link" (click)="openLoginModal()">
+                SignIn
+            </a>
+        </ng-container>
+            <a class="nav-item nav-link" (click)="openUserRegModal()">
+                Signup
+            </a> -->
+        </div>
+    </div>
+</nav>
+<div class="modal" role="dialog" [style.display]="loginModalStyle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login Form</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeLoginModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="uid">Username</label>
+                        <input type=text class="form-control" value="" placeholder=username #uname required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input type=password class="form-control" value="" placeholder=password #pwd required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type=button class="btn btn-primary btn-strech"
+                    (click)="userLogin(uname.value,pwd.value)">SignIn</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" role="dialog" [style.display]="regModalStyle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">User Registration</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeUserRegModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <input type=text class="form-control" placeholder=username #uid required>
+                    </div>
+                    <div class="form-group">
+                        <input type=password class="form-control" placeholder=password #pwd1 required>
+                    </div>
+                    <div class="form-group">
+                        <input type=text class="form-control" placeholder=Firstname #fname required>
+                    </div>
+                    <div class="form-group">
+                        <input type=text class="form-control" placeholder=Lastname #lname required>
+                    </div>
+                    <div class="form-group">
+                        <input type=text class="form-control" placeholder="Mobile No." #mobile required>
+                    </div>
+                    <div class="form-group">
+                        <input type=text class="form-control" placeholder=Email #email required>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type=button class="btn btn-primary btn-lg"
+                    (click)="registerUser(uid.value,pwd1.value,fname.value,lname.value,mobile.value,email.value)">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
